@@ -9,8 +9,8 @@ const Container = styled.div`
     background: #f6f7f8;
 `;
 
-export const Conversion = () => {
+export const Conversation = () => {
   return (
-    <Container>Conversion</Container>
+    <Container>Conversation</Container>
   )
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { ContactList } from "./components/ContactList";
-import { Conversion } from "./components/Conversion";
+import { Conversation } from "./components/Conversation";
 
 const Container = styled.div`
   display : flex;
@@ -14,7 +14,7 @@ function App() {
   return (
     <Container>
       <ContactList />
-      <Conversion />
+      <Conversation />
     </Container>
   );
 }

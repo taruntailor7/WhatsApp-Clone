@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components"
+import { Contact } from './Contact';
 
 const Container = styled.div`
     display: flex;
@@ -32,13 +33,21 @@ const SearchContainer = styled.div`
     background : white;
     border-radius: 16px;
     width: 100%;
-    padding: 5px 10px;
+    padding: 5px 4px;
 `;
 
 const SearchIcon = styled.img`
     width: 28px;
     height: 28px;
 `;
+
+const SearchInput = styled.input`
+    width: 100%;
+    font-size: 15px;
+    border: none;
+    outline: none;
+`;
+
 
 export const ContactList = () => {
   return (
@@ -49,10 +58,10 @@ export const ContactList = () => {
         <SearchBox>
             <SearchContainer>
                 <SearchIcon src={"/search-icon.svg"} />
-
+                <SearchInput placeholder="Search or start new chat" />
             </SearchContainer>
         </SearchBox>
-        ContactList
+        <Contact />
     </Container>
   )
 }
