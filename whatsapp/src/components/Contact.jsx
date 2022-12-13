@@ -42,6 +42,8 @@ const MessageTime = styled.span`
     margin-right: 10px;
     color:rgba(0,0,0,0.45)
     white-space:nowrap;
+    width:20%;
+    opacity:0.6;
 `;
 
 export const Contact = ({userData}) => {
