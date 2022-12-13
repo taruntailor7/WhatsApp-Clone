@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 import { Contact } from './Contact';
+import { contactList } from "../../src/mockData"
 
 const Container = styled.div`
     display: flex;
@@ -63,7 +64,9 @@ export const ContactList = () => {
                 <SearchInput placeholder="Search or start new chat" />
             </SearchContainer>
         </SearchBox>
-        <Contact />
+        {contactList.map((userData)=>(
+            <Contact userData={userData}/>
+        ))}
     </Container>
   )
 }

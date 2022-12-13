@@ -44,15 +44,15 @@ const MessageTime = styled.span`
     white-space:nowrap;
 `;
 
-export const Contact = () => {
+export const Contact = ({userData}) => {
   return (
     <ContactItem>
-        <ProfileIcon src="/profile/jeff.jpeg"/>
+        <ProfileIcon src={userData.profilePic}/>
         <ContactInfo>
-            <ContactName>Demo</ContactName>
-            <MessageText>Hey Demo!</MessageText>
+            <ContactName>{userData.name}</ContactName>
+            <MessageText>{userData.lastText}</MessageText>
         </ContactInfo>
-        <MessageTime >05:32PM</MessageTime>
+        <MessageTime >{userData.lastTextTime}</MessageTime>
     </ContactItem>
   )
 }
