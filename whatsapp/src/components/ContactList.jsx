@@ -65,7 +65,7 @@ export const ContactList = ({setSelectedChat}) => {
             </SearchContainer>
         </SearchBox>
         {contactList.map((userData)=>(
-            <Contact userData={userData} setSelectedChat={setSelectedChat} />
+            <Contact key={userData.id} userData={userData} setSelectedChat={setSelectedChat} />
         ))}
     </Container>
   )

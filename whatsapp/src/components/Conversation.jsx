@@ -74,7 +74,7 @@ export const Conversation = ({selectedChat}) => {
       </ProfileHeader>
       <MessageContainer>
         {messagesList.map((messageData) =>(
-          <MessageDiv isYours={messageData.senderID === 0}>
+          <MessageDiv key={messageData.id} isYours={messageData.senderID === 0}>
             <Message isYours={messageData.senderID === 0}>{messageData.text}</Message>
           </MessageDiv>
         ))}

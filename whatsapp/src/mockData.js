@@ -65,7 +65,7 @@ export const contactList = [
       addedOn: "12:00 PM",
     },
     {
-      id: 5,
+      id: 6,
       messageType: "TEXT",
       text: "Have you subscribed The Indian Dev ?",
       senderID: 1,
