@@ -39,11 +39,15 @@ function App() {
   return (
     <Container>
       <ContactList setSelectedChat={setSelectedChat} />
-      {selectedChat ? <Conversation /> : <Placeholder>
-        <ChatPlaceholder src="/welcome-placeholder.jpeg"/>
-        <span>Keep your phone connected</span>
-        WhatsApp connects to your phone to sync messages.
-        </Placeholder>}
+      {selectedChat ? (
+      <Conversation selectedChat={selectedChat}/>
+      ) : (
+        <Placeholder>
+          <ChatPlaceholder src="/welcome-placeholder.jpeg"/>
+          <span>Keep your phone connected</span>
+          WhatsApp connects to your phone to sync messages.
+        </Placeholder>
+      )}
     </Container>
   );
 }

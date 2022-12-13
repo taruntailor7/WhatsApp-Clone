@@ -65,12 +65,12 @@ const Message = styled.div`
 
 
 
-export const Conversation = () => {
+export const Conversation = ({selectedChat}) => {
   return (
     <Container>
       <ProfileHeader>
-        <ProfileImage src="/profile/elon.jpeg"/>
-        Tarun Tailor
+        <ProfileImage src={selectedChat.profilePic}/>
+        {selectedChat.name}
       </ProfileHeader>
       <MessageContainer>
         {messagesList.map((messageData) =>(
