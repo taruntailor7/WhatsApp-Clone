@@ -49,8 +49,8 @@ export const Contact = () => {
     <ContactItem>
         <ProfileIcon src="/profile/jeff.jpeg"/>
         <ContactInfo>
-            <ContactName>Nikki</ContactName>
-            <MessageText>Hey Cutie!</MessageText>
+            <ContactName>Demo</ContactName>
+            <MessageText>Hey Demo!</MessageText>
         </ContactInfo>
         <MessageTime >05:32PM</MessageTime>
     </ContactItem>

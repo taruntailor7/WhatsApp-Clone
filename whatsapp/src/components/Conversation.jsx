@@ -35,7 +35,33 @@ const ChatBox = styled.div`
 const EmojiImage = styled.img`
   width:28px;
   heoght:28px;
+  opacity:0.4;
+  cursor: pointer; 
 `;
+
+const MessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background:#e5ddd6;
+  overflow-y:auto;
+`;
+
+const MessageDiv = styled.div`
+  display: flex;
+  justify-content:${(props) => (props.isYours ? 'flex-end': "flex-start")};
+  margin:5px 15px;
+`;
+
+const Message = styled.div`
+  background:${(props) => (props.isYours ? "#daf8cb": "white")};
+  max-width:50%;
+  color: #303030;
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius:4px;
+`;
+
 
 
 export const Conversation = () => {
@@ -45,6 +71,23 @@ export const Conversation = () => {
         <ProfileImage src="/profile/elon.jpeg"/>
         Tarun Tailor
       </ProfileHeader>
+      <MessageContainer>
+        <MessageDiv isYours={true}>
+          <Message isYours={true}>
+            Hey Man!
+          </Message>
+        </MessageDiv>
+        <MessageDiv>
+          <Message>
+            Hey Man!
+          </Message>
+        </MessageDiv>
+        <MessageDiv>
+          <Message>
+            Hey Man!
+          </Message>
+        </MessageDiv>
+      </MessageContainer>
       <ChatBox>
         <SearchContainer>
           <EmojiImage src={"/data.svg"}></EmojiImage>
