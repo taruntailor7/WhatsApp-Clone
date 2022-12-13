@@ -12,6 +12,7 @@ const Container = styled.div`
 `;
 
 const Placeholder = styled.div`
+  width:70%;
   display : flex;
   flex-direction: column;
   justify-content: center;
@@ -37,7 +38,7 @@ function App() {
   
   return (
     <Container>
-      <ContactList />
+      <ContactList setSelectedChat={setSelectedChat} />
       {selectedChat ? <Conversation /> : <Placeholder>
         <ChatPlaceholder src="/welcome-placeholder.jpeg"/>
         <span>Keep your phone connected</span>

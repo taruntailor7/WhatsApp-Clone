@@ -52,7 +52,7 @@ export const SearchInput = styled.input`
 `;
 
 
-export const ContactList = () => {
+export const ContactList = ({setSelectedChat}) => {
   return (
     <Container>
         <ProfileInfoDiv>
@@ -65,7 +65,7 @@ export const ContactList = () => {
             </SearchContainer>
         </SearchBox>
         {contactList.map((userData)=>(
-            <Contact userData={userData}/>
+            <Contact userData={userData} setSelectedChat={setSelectedChat} />
         ))}
     </Container>
   )

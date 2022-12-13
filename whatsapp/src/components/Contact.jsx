@@ -7,7 +7,10 @@ const ContactItem = styled.div`
     border-bottom: 1px solid #f2f2f2;
     background: white;
     cursor: pointer;
-    padding: 15px 12px
+    padding: 15px 12px;
+    :hover{
+        background:#ebebeb;
+    }
 `
 
 const ProfileIcon = styled.img`
@@ -46,9 +49,9 @@ const MessageTime = styled.span`
     opacity:0.6;
 `;
 
-export const Contact = ({userData}) => {
+export const Contact = ({userData,setSelectedChat}) => {
   return (
-    <ContactItem>
+    <ContactItem onClick={()=>setSelectedChat(userData)}>
         <ProfileIcon src={userData.profilePic}/>
         <ContactInfo>
             <ContactName>{userData.name}</ContactName>
