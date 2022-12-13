@@ -2,6 +2,7 @@ import React from 'react'
 import styled from "styled-components"
 import { SearchContainer, SearchInput } from './ContactList';
 import {messagesList} from "../mockData"
+import EmojiPicker from 'emoji-picker-react';
 
 const Container = styled.div`
     display: flex;
@@ -66,6 +67,9 @@ const Message = styled.div`
 
 
 export const Conversation = ({selectedChat}) => {
+
+  const onEmojiClick = (event,emoji)=>{}
+
   return (
     <Container>
       <ProfileHeader>
@@ -81,7 +85,8 @@ export const Conversation = ({selectedChat}) => {
       </MessageContainer>
       <ChatBox>
         <SearchContainer>
-          <EmojiImage src={"/data.svg"}></EmojiImage>
+          <EmojiPicker onEmojiClick={onEmojiClick} />
+          <EmojiImage src={"/data.svg"}/>
           <SearchInput placeholder="Type a message"></SearchInput>
         </SearchContainer>
       </ChatBox>
