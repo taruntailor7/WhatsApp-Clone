@@ -52,7 +52,7 @@ export const Contact = () => {
             <ContactName>Nikki</ContactName>
             <MessageText>Hey Cutie!</MessageText>
         </ContactInfo>
-        <MessageTime>05:32PM</MessageTime>
+        <MessageTime >05:32PM</MessageTime>
     </ContactItem>
   )
 }
