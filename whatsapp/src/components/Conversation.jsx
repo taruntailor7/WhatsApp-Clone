@@ -70,11 +70,9 @@ export const Conversation = ({selectedChat}) => {
   const [text,setText] = useState("");
   const [pickerVisible, setPickerVisible] = useState(false);
 
-  const onEmojiClick = (event,emojiObj)=>{
+  const onEmojiClick = (emojiObj)=>{
     setText(text+emojiObj.emoji);
-
   }
-
 
   return (
     <Container>
@@ -88,10 +86,10 @@ export const Conversation = ({selectedChat}) => {
             <Message isYours={messageData.senderID === 0}>{messageData.text}</Message>
           </MessageDiv>
         ))}
+      {pickerVisible && (<EmojiPicker width="30%" margin="auto" height="800px"  onEmojiClick={onEmojiClick} />)}
       </MessageContainer>
       <ChatBox>
         <SearchContainer>
-          {pickerVisible && (<EmojiPicker width="100%" position="absolute" bottom="60px"  onEmojiClick={onEmojiClick} />)}
           <EmojiImage src={"/data.svg"} onClick={()=>setPickerVisible(!pickerVisible)}/>
           <SearchInput placeholder="Type a message" value={text} onChange={(e)=>setText(e.target.value)}></SearchInput>
         </SearchContainer>
