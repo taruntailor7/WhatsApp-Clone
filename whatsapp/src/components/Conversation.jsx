@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components"
 import { SearchContainer, SearchInput } from './ContactList';
 import {messagesList} from "../mockData"
@@ -67,8 +67,14 @@ const Message = styled.div`
 
 
 export const Conversation = ({selectedChat}) => {
+  const [text,setText] = useState("");
+  const [pickerVisible, setPickerVisible] = useState(false);
 
-  const onEmojiClick = (event,emoji)=>{}
+  const onEmojiClick = (event,emojiObj)=>{
+    setText(text+emojiObj.emoji);
+
+  }
+
 
   return (
     <Container>
@@ -85,9 +91,9 @@ export const Conversation = ({selectedChat}) => {
       </MessageContainer>
       <ChatBox>
         <SearchContainer>
-          <EmojiPicker onEmojiClick={onEmojiClick} />
+          <EmojiPicker pickerStyle={{position:"absolute",bottom:"60px"}} onEmojiClick={onEmojiClick} />
           <EmojiImage src={"/data.svg"}/>
-          <SearchInput placeholder="Type a message"></SearchInput>
+          <SearchInput placeholder="Type a message" value={text} onChange={(e)=>setText(e.target.value)}></SearchInput>
         </SearchContainer>
       </ChatBox>
     </Container>
