@@ -91,8 +91,8 @@ export const Conversation = ({selectedChat}) => {
       </MessageContainer>
       <ChatBox>
         <SearchContainer>
-          <EmojiPicker pickerStyle={{position:"absolute",bottom:"60px"}} onEmojiClick={onEmojiClick} />
-          <EmojiImage src={"/data.svg"}/>
+          {pickerVisible && (<EmojiPicker width="100%" position="absolute" bottom="60px"  onEmojiClick={onEmojiClick} />)}
+          <EmojiImage src={"/data.svg"} onClick={()=>setPickerVisible(!pickerVisible)}/>
           <SearchInput placeholder="Type a message" value={text} onChange={(e)=>setText(e.target.value)}></SearchInput>
         </SearchContainer>
       </ChatBox>
