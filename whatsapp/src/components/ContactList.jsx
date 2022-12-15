@@ -1,7 +1,7 @@
-import React from 'react'
-import styled from "styled-components"
+import React from 'react';
+import styled from "styled-components";
 import { Contact } from './Contact';
-import { contactList } from "../../src/mockData"
+import { contactList } from "../../src/mockData";
 
 const Container = styled.div`
     display: flex;

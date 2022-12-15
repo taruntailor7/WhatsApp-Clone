@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import styled from "styled-components"
+import React, { useState } from 'react';
+import styled from "styled-components";
 import { SearchContainer, SearchInput } from './ContactList';
-import {messagesList} from "../mockData"
+import {messagesList} from "../mockData";
 import EmojiPicker from 'emoji-picker-react';
 
 const Container = styled.div`
