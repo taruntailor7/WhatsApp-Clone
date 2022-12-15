@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components"
+import styled from "styled-components";
 import { ContactList } from "./components/ContactList";
 import { Conversation } from "./components/Conversation";
 
