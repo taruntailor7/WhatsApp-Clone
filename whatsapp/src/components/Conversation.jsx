@@ -20,6 +20,7 @@ const ProfileHeader = styled.div`
   align-items: center;
   gap:10px;
 `
+
 const ProfileImage = styled.img`
     width:32px;
     height: 32px;
