@@ -1,11 +1,13 @@
 import express from "express";
-import cors from "cors";
-import connection  from "./config/db.js";
+import { configureExpressApp } from "./config/index.js";
+import connection  from "./dbConnection/db.js";
 
 const app = new express();
-app.use(express.json());
-app.use(cors());
+configureExpressApp(app)
 
+app.get("/", (req, res) => {
+    res.send({message:"Welcome"});
+})
 
 
 app.listen(3050, ()=>{
