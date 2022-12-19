@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const channelSchema = new mongoose.Schema({
     name : {type: 'string', default: ''},
     phoneNumber : {type: 'string', default:""},
     password : {type: 'string', default:""},
@@ -8,13 +8,13 @@ const userSchema = new mongoose.Schema({
     addedOn : {type: 'string', default:Date.now()}
 });
 
-userSchema.method({
+channelSchema.method({
     saveData: async function(){
         return this.save();
     }
 })
 
-userSchema.static({
+channelSchema.static({
     findData: function(findObj){
         return this.find(findObj);
     },
@@ -30,5 +30,5 @@ userSchema.static({
     },
 })
 
-const userModel = mongoose.model("wc-user", userSchema)
+const userModel = mongoose.model("wc-channel", channelSchema)
 export default userModel
