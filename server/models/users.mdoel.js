@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    name : {type: 'string', default: ''},
-    phoneNumber : {type: 'string', default:""},
-    password : {type: 'string', default:""},
-    profilePic : {type: 'string', default:""},
-    addedOn : {type: 'string', default:Date.now()}
+    name : {type: String, default: ''},
+    phoneNumber : {type: String, default:""},
+    password : {type: String, default:""},
+    profilePic : {type: String, default:""},
+    addedOn : {type: Number, default:Date.now()}
 });
 
 userSchema.method({

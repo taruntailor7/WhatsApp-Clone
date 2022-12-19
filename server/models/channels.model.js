@@ -1,11 +1,21 @@
 import mongoose from "mongoose";
 
 const channelSchema = new mongoose.Schema({
-    name : {type: 'string', default: ''},
-    phoneNumber : {type: 'string', default:""},
-    password : {type: 'string', default:""},
-    profilePic : {type: 'string', default:""},
-    addedOn : {type: 'string', default:Date.now()}
+    channelUsers:[
+        {
+            _id:{type: String, default: ""},
+            name:{type: String, default: ""},
+            profilePic:{type: String, default: ""},
+        },
+    ],
+    messages:[
+        {
+            senderID:{type: String, default: ""},
+            message:{type: String, default: ""},
+            addedOn : {type: Number, default:Date.now()},
+        },
+    ],
+    addedOn : {type: Number, default:Date.now()}
 });
 
 channelSchema.method({
