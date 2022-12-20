@@ -9,15 +9,15 @@ const applyRoutes = (app) => {
 
     app.post("/user",validateCreateUser, createUser);
 
-    app.post("/login",validateCreateUser, loginUser)
+    app.post("/login",validateLogin, loginUser)
 
-    app.post("/channel",validateCreateUser, createChannel)
+    app.post("/channel",validateCreateChannel, createChannel)
     
-    app.get("/search-user",validateCreateUser, getChannelList)
+    app.get("/search-user",validateSearchUser,searchUser)
 
-    app.get("/channel-list",validateCreateUser, searchUser)
+    app.get("/channel-list",validateGetChannelList, getChannelList)
 
-    app.post("/message",validateCreateUser, sendMessage)
+    app.post("/message",validateAddMessage,sendMessage)
 
 }
 
