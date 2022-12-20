@@ -5,7 +5,20 @@ export const validateCreateUser = async(req,res,next) => {
         password: yup.string().required(),
         profilePic: yup.string(),
     });
+    await validate(schema, req.body, res, next);
 }
+
+const validate = async (schema, reqData, res, next) => {
+    try {
+        await schema.validate(reqData,{abortEarly: false});
+        next();
+    } catch (err) {
+        const errors = e.inner.map(({path,message,value})=>({
+            path,message,value
+        }))
+        sendError(res,errors,"Invalid Request");
+    }
+} 
 
 // export const validateUser = async(req,res,next) => {
 
