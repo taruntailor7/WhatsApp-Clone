@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components";
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
+import App from '../../App';
 
 const Container = styled.div`
     display: flex;
@@ -58,12 +60,17 @@ const QRCode = styled.img`
 `
 
 export const Login = () => {
+    const [userInfo, setUserInfo] = useState()
     const handleResponseFromGoogle = (response)=>{
-        console.log(response);
+        console.log(response.credential,"respo");
+        let decodedUser = jwt_decode(response.credential);
+        console.log(decodedUser,"decoded");
+        setUserInfo(decodedUser)
     }
 
     return (
-        <Container>
+        <>
+        {userInfo ? <App /> : <Container>
             <Header>
                 <Head>WhatsApp Web Clone</Head>
             </Header>
@@ -76,15 +83,15 @@ export const Login = () => {
                         <li>Click on the sign in button to continue using the WhatsApp Clone.</li>
                     </ol>
                     <GoogleLogin
-                        clientId="569591364082-2nlppfb3tvja16sol1gbp573il06kmue.apps.googleusercontent.com"
-                        buttonText="Sign In with Google"
                         onSuccess={handleResponseFromGoogle}
-                        onFailure={handleResponseFromGoogle}
-                        cookiePolicy={'single_host_origin'}
+                        onError={() => {
+                            console.log('Login Failed');
+                        }}
                     />
                 </Instruction>
                 <QRCode src="https://www.tech-recipes.com/wp-content/uploads/2020/07/feature-image.jpg"/>
             </CardView>
-        </Container>
+        </Container>}
+        </>
     )
 }
