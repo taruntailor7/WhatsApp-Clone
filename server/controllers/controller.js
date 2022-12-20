@@ -4,6 +4,12 @@ import {sendResponse, sendError} from "../utility/index.js"
 
 export const createUser = async(req, res)=>{
     const userObj = new userModel(req.body);
+    const isUserExist = await userModel.findOneData({
+        phoneNumber: userObj.phoneNumber,
+    });
+    if(isUserExist){
+        return sendError(res,{},"User already exists");
+    }
     await userObj.saveData();
     sendResponse(res, userObj, "User added successfully", true, 200);
 }
@@ -46,5 +52,5 @@ export const searchUser = async(req, res)=>{
 }
 
 export const sendMessage = async(req, res)=>{
-    return res.send("createdUser");
+
 }
