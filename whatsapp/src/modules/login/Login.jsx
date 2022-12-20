@@ -9,7 +9,6 @@ const Container = styled.div`
     height: 100vh;
     color:white; 
 `
-
 const Header = styled.div`
     color:white;
     width:100%;
@@ -18,11 +17,26 @@ const Header = styled.div`
     padding: 50px 0px 140px 0px;
     font-size: 14px;
 `
+const CardView = styled.div`
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 30px 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -80px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 40px;
+    flex-wrap: wrap;
+    color:black; 
+`
 
 export const Login = () => {
   return (
     <Container>
         <Header>WhatsApp Web Clone</Header>
+        <CardView>Hello</CardView>
     </Container>
   )
 }
