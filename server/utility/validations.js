@@ -56,7 +56,7 @@ export const validateSearchUser = async(req,res,next) => {
 
 export const validateGetChannelList = async(req,res,next) => {
     const schema = yup.object().shape({
-        userId: yup.number().required(),
+        userId: yup.string().required(),
     });
     await validate(schema, req.query, res, next);
 }
