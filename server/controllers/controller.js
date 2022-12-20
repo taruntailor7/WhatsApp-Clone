@@ -8,7 +8,14 @@ export const createUser = async(req, res)=>{
 }
 
 export const loginUser = async(req, res)=>{
-    return res.send("createdUser");
+    const requestData = req.body();
+    const isUserExist = await userModel.findOneData({
+        phoneNumber: requestData.phoneNumber,
+        password: requestData.password
+    });
+    if(!isUserExist){
+        return sendError
+    }
 }
 
 export const createChannel = async(req, res)=>{
