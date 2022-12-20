@@ -52,11 +52,11 @@ export const SearchInput = styled.input`
 `;
 
 
-export const ContactList = ({setSelectedChat}) => {
+export const ContactList = ({setSelectedChat,picture}) => {
   return (
     <Container>
         <ProfileInfoDiv>
-            <ProfileImage src="/profile/elon.jpeg"/>
+            <ProfileImage src={picture || "/profile/elon.jpeg"}/>
         </ProfileInfoDiv>
         <SearchBox>
             <SearchContainer>

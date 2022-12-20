@@ -62,15 +62,15 @@ const QRCode = styled.img`
 export const Login = () => {
     const [userInfo, setUserInfo] = useState()
     const handleResponseFromGoogle = (response)=>{
-        console.log(response.credential,"respo");
+        // console.log(response.credential,"respo");
         let decodedUser = jwt_decode(response.credential);
-        console.log(decodedUser,"decoded");
-        setUserInfo(decodedUser)
+        // console.log(decodedUser,"decoded");
+        setUserInfo(decodedUser);
     }
 
     return (
         <>
-        {userInfo ? <App /> : <Container>
+        {userInfo ? <App userInfo={userInfo}/> : <Container>
             <Header>
                 <Head>WhatsApp Web Clone</Head>
             </Header>

@@ -33,11 +33,12 @@ const ChatPlaceholder = styled.img`
   object-fit: contain;
 `;
 
-function App() {
-  const [selectedChat, setSelectedChat] = useState()
+function App({userInfo}) {
+  const [selectedChat, setSelectedChat] = useState();
+
   return (
     <Container>
-      <ContactList setSelectedChat={setSelectedChat} />
+      <ContactList setSelectedChat={setSelectedChat} picture={userInfo.picture}/>
       {selectedChat ? (
       <Conversation selectedChat={selectedChat}/>
       ) : (
