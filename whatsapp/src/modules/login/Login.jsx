@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
-import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from 'react-google-login';
+import GoogleLogin from 'react-google-login';
 
 const Container = styled.div`
     display: flex;
@@ -58,8 +59,8 @@ const QRCode = styled.img`
 `
 
 export const Login = () => {
-    const handleResponseFromGoogle = (responseData)=>{
-        console.log(responseData);
+    const handleResponseFromGoogle = (response)=>{
+        console.log(response);
     }
 
     return (
