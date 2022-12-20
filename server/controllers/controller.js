@@ -21,11 +21,13 @@ export const loginUser = async(req, res)=>{
 }
 
 export const createChannel = async(req, res)=>{
-    return res.send("createdUser");
+    const channel = await channelModel(req.body);
+    await channel.saveData();
+    sendResponse(res, channel, "Channel created successfully", true, 200);
 }
 
 export const getChannelList = async(req, res)=>{
-    return res.send("createdUser");
+    
 }
 
 export const searchUser = async(req, res)=>{
