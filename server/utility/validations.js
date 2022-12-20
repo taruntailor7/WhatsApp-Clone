@@ -31,7 +31,7 @@ export const validateLogin = async(req,res,next) => {
     await validate(schema, req.body, res, next);
 }
 
-export const validateCreateChannel = async(req,res,next) => {
+export const validateAddChannel = async(req,res,next) => {
     const schema = yup.object().shape({
         channelUsers: yup.array().of(
             yup.object().shape({
@@ -54,7 +54,7 @@ export const validateSearchUser = async(req,res,next) => {
 }
 
 
-export const validateGetChannelList = async(req,res,next) => {
+export const validateChannels = async(req,res,next) => {
     const schema = yup.object().shape({
         userId: yup.string().required(),
     });

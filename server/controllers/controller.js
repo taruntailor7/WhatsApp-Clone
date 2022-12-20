@@ -20,6 +20,7 @@ export const loginUser = async(req, res)=>{
         phoneNumber: requestData.phoneNumber,
         password: requestData.password
     });
+    delete isUserExist.password;
     if(!isUserExist){
         return sendError(res,{},"Invalid credentials");
     }
