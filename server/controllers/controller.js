@@ -35,7 +35,14 @@ export const getChannelList = async(req, res)=>{
 }
 
 export const searchUser = async(req, res)=>{
-    return res.send("createdUser");
+    const requestData = req.query
+    const isUserExist = await userModel.findOneData({
+        phoneNumber: requestData.phone
+    });
+    if(!isUserExist){
+        return sendError(res,{},"No user found");
+    }
+    sendResponse(res, isUserExist, "User found successfully", true, 200); 
 }
 
 export const sendMessage = async(req, res)=>{
