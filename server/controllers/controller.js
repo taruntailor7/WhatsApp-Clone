@@ -1,3 +1,5 @@
+import userModel from "../models/users.mdoel";
+import channelModel from "../models/channels.model";
 
 export const createUser = async(req, res)=>{
     return res.send("createdUser");
