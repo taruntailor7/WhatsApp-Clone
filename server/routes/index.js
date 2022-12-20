@@ -1,5 +1,5 @@
 import { createChannel, createUser, getChannelList, loginUser, searchUser, sendMessage } from "../controllers/controller.js";
-import { validateCreateUser } from "../utility/validations.js";
+import { validateAddMessage, validateCreateChannel, validateCreateUser, validateGetChannelList, validateLogin, validateSearchUser } from "../utility/validations.js";
 
 const applyRoutes = (app) => {
     app.get("/", (req, res) => {

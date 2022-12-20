@@ -32,7 +32,15 @@ export const validateLogin = async(req,res,next) => {
 
 export const validateCreateChannel = async(req,res,next) => {
     const schema = yup.object().shape({
-        
+        channelUsers: yup.array().of(
+            yup.object().shape({
+                name: yup.string().required(),
+                _id: yup.string().required(),
+                profilePic: yup.string(),
+            })
+        )
+        .length(2)
+        .required(),
     });
     await validate(schema, req.body, res, next);
 }
@@ -41,7 +49,7 @@ export const validateSearchUser = async(req,res,next) => {
     const schema = yup.object().shape({
         phone: yup.number().required(),
     });
-    await validate(schema, req.body, res, next);
+    await validate(schema, req.query, res, next);
 }
 
 
@@ -49,13 +57,16 @@ export const validateGetChannelList = async(req,res,next) => {
     const schema = yup.object().shape({
         userId: yup.number().required(),
     });
-    await validate(schema, req.body, res, next);
+    await validate(schema, req.query, res, next);
 }
 
 export const validateAddMessage = async(req,res,next) => {
     const schema = yup.object().shape({
-        phoneNumer: yup.number().required(),
-        password: yup.string().required(),
+        channelId: yup.string().required(),
+        messages: yup.object().shape({
+            senderID: yup.string().required(),
+            message: yup.string().required(),
+        })
     });
     await validate(schema, req.body, res, next);
 }
