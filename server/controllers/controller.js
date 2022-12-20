@@ -1,5 +1,6 @@
 import userModel from "../models/users.model.js";
 import channelModel from "../models/channels.model.js";
+import {sendResponse, sendError} from "../utility/index.js"
 
 export const createUser = async(req, res)=>{
     const userObj = new userModel(req.body);
@@ -8,14 +9,15 @@ export const createUser = async(req, res)=>{
 }
 
 export const loginUser = async(req, res)=>{
-    const requestData = req.body();
+    const requestData = req.body;
     const isUserExist = await userModel.findOneData({
         phoneNumber: requestData.phoneNumber,
         password: requestData.password
     });
     if(!isUserExist){
-        return sendError
+        return sendError(res,{},"Invalid credentials");
     }
+    sendResponse(res, isUserExist, "User logged in successfully", true, 200);
 }
 
 export const createChannel = async(req, res)=>{

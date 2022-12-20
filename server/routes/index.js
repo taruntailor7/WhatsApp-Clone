@@ -3,7 +3,7 @@ import { validateAddMessage, validateCreateChannel, validateCreateUser, validate
 
 const applyRoutes = (app) => {
     app.get("/", (req, res) => {
-        res.send({message:"hello"});
+        res.send({message:"Welcome on my WhatsApp"});
     })
     // create-user, login, channel, search-user, channel-list, send-message
 

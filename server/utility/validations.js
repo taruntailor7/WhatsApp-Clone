@@ -1,9 +1,10 @@
-import { sendError,sendResponse } from "../utility/index.js";
+import { sendError } from "../utility/index.js";
+import * as yup from "yup";
 
 export const validateCreateUser = async(req,res,next) => {
     const schema = yup.object().shape({
         name: yup.string().required(),
-        phoneNumer: yup.number().required(),
+        phoneNumber: yup.number().required(),
         password: yup.string().required(),
         profilePic: yup.string(),
     });
@@ -15,7 +16,7 @@ const validate = async (schema, reqData, res, next) => {
         await schema.validate(reqData,{abortEarly: false});
         next();
     } catch (err) {
-        const errors = e.inner.map(({path,message,value})=>({
+        const errors = err.inner.map(({path,message,value})=>({
             path,message,value
         }))
         sendError(res,errors,"Invalid Request");
@@ -24,7 +25,7 @@ const validate = async (schema, reqData, res, next) => {
 
 export const validateLogin = async(req,res,next) => {
     const schema = yup.object().shape({
-        phoneNumer: yup.number().required(),
+        phoneNumber: yup.number().required(),
         password: yup.string().required(),
     });
     await validate(schema, req.body, res, next);
