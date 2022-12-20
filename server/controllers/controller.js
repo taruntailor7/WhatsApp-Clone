@@ -1,8 +1,10 @@
-import userModel from "../models/users.mdoel";
-import channelModel from "../models/channels.model";
+import userModel from "../models/users.model.js";
+import channelModel from "../models/channels.model.js";
 
 export const createUser = async(req, res)=>{
-    return res.send("createdUser");
+    const userObj = new userModel(req.body);
+    await userObj.saveData();
+    sendResponse(res, userObj, "User added successfully", true, 200);
 }
 
 export const loginUser = async(req, res)=>{
