@@ -1,6 +1,11 @@
 import Cookies from 'universal-cookie';
  
 const cookies = new Cookies();
- 
-cookies.set('myCat', 'Pacman', { path: '/' });
-console.log(cookies.get('myCat')); // Pacman
+
+export const setUserInfo = (userInfo)=>{
+    cookies.set("userInfo", JSON.stringify(userInfo), { path: '/' });
+};
+
+export const getUserInfo = (userInfo)=>{
+    cookies.get('userInfo');
+}
