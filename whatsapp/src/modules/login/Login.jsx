@@ -68,7 +68,7 @@ export const Login = () => {
         if(userData){
             setUserInfo(userData);
         }
-    },[])
+    },[]);
 
     const handleResponseFromGoogle = (response)=>{
         // console.log(response.credential,"respo");
