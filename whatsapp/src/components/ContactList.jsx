@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { Contact } from './Contact';
-import { contactList } from "../../src/mockData";
 import validateEmail from '../utility/utility';
 import { getChannelList, searchUser } from '../managers/httpManager';
 
@@ -80,9 +79,7 @@ export const ContactList = ({setSelectedChat, userInfo, setRefreshContactList}) 
         if(!validateEmail(searchText)){
             return;
         }
-        // console.log(searchText);
         const userData = await searchUser(searchText);
-        console.log(userData,"user")
         if(userData.data?.success){
             setSearchResult(userData.data.responseData);
         }

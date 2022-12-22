@@ -11,7 +11,8 @@ const channelSchema = new mongoose.Schema({
     messages:[
         {
             senderEmail:{type: String, default: ""},
-            message:{type: String, default: ""},
+            messageType:{type: String, default:"TEXT"},
+            text:{type: String, default: ""},
             addedOn : {type: Number, default:Date.now()},
         },
     ],

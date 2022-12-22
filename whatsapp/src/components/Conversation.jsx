@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { SearchContainer, SearchInput } from './ContactList';
 // import {messagesList} from "../mockData";
@@ -71,19 +71,21 @@ const Message = styled.div`
 export const Conversation = ({selectedChat,userInfo, setRefreshContactList}) => {
   const [text,setText] = useState("");
   const [pickerVisible, setPickerVisible] = useState(false);
-  const [message,setMessage] = useState([]);
+  const [messageList,setMessageList] = useState([]);
 
   const onEmojiClick = (emojiObj)=>{
     setText(text+emojiObj.emoji);
     setPickerVisible(false)
   }
 
+  useEffect(()=>{
+    setMessageList(selectedChat.channelData.messages);
+  },[selectedChat]);
+
   const onEnterPress = async (event) =>{
-    let channelId = "";
+    let channelId = selectedChat.channelData._id;
     if(event.key === "Enter"){
-      console.log(message,"mmm");
-      if(message || !message.length){
-        console.log(message,"mesg")
+      if(!messageList || !messageList.length){
         const channelUsers = [
           {
             email:userInfo.email,
@@ -91,31 +93,29 @@ export const Conversation = ({selectedChat,userInfo, setRefreshContactList}) => 
             profilePic:userInfo.picture,
           },
           {
-            email:selectedChat.email,
-            name:selectedChat.name,
-            profilePic:selectedChat.profilePic,
+            email:selectedChat.otherUser.email,
+            name:selectedChat.otherUser.name,
+            profilePic:selectedChat.otherUser.profilePic,
           },
         ];
         const channelResponse = await createChannel({channelUsers});
         channelId = channelResponse.data.responseData._id;
-        setRefreshContactList();
       }
-
-      const msg = [...message];
-
+      setRefreshContactList();
+      const messages = [...messageList];
       const msgReqData = {
         text,
         senderEmail: userInfo.email,
         addedOn: new Date().getTime(), 
       }
 
-      const messageResponse = await sendMessage({
+      await sendMessage({
         channelId,
-        msgReqData
+        messages: msgReqData
       });
 
-      msg.push(msgReqData);
-      setMessage(msg);
+      messages.push(msgReqData);
+      setMessageList(messages);
       setText("");
     }
   };
@@ -123,17 +123,18 @@ export const Conversation = ({selectedChat,userInfo, setRefreshContactList}) => 
   return (
     <Container>
       <ProfileHeader>
-        <ProfileImage src={selectedChat.profilePic}/>
-        {selectedChat.name}
+        <ProfileImage src={selectedChat.otherUser.profilePic}/>
+        {selectedChat.otherUser.name}
       </ProfileHeader>
       <MessageContainer>
-        {message.map((messageData) =>(
-          <MessageDiv key={messageData.id} isYours={messageData.senderID === 0}>
-            <Message isYours={messageData.senderID === 0}>{messageData.text}</Message>
+        {messageList?.map((messageData) =>(
+          <MessageDiv key={messageData.id} isYours={messageData.senderEmail === userInfo.email}>
+            <Message isYours={messageData.email === userInfo.email}>{messageData.text}</Message>
           </MessageDiv>
         ))}
       {pickerVisible && (<EmojiPicker width="30%" margin="auto" height="1000px"  onEmojiClick={onEmojiClick} />)}
       </MessageContainer>
+      
       <ChatBox>
         <SearchContainer>
           <EmojiImage src={"/data.svg"} onClick={()=>setPickerVisible(!pickerVisible)}/>

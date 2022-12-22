@@ -30,7 +30,7 @@ export const createChannel = async(req, res)=>{
     const channelUsers = req.body.channelUsers;
     const firstUser = channelUsers[0];
     const secondUser = channelUsers[1];
-    let isChannelAlreadyExist = fasle;
+    let isChannelAlreadyExist = false;
     let ChannelModel;
 
     const channelList = await channelModel.findData({
@@ -54,7 +54,7 @@ export const createChannel = async(req, res)=>{
 
     ChannelModel = new channelModel(req.body);
     await ChannelModel.saveData();
-    sendResponse(res, channel, "Channel created successfully", true, 200);
+    sendResponse(res, ChannelModel, "Channel created successfully", true, 200);
 }
 
 export const getChannelList = async(req, res)=>{
