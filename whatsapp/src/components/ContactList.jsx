@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { Contact } from './Contact';
 import { contactList } from "../../src/mockData";
 import validateEmail from '../utility/utility';
-import { searchUser } from '../managers/httpManager';
+import { getChannelList, searchUser } from '../managers/httpManager';
 
 const Container = styled.div`
     display: flex;
@@ -58,9 +59,21 @@ const SearchResults = styled.div`
     height:100px;
 `
 
-export const ContactList = ({setSelectedChat,picture}) => {
+export const ContactList = ({setSelectedChat, userInfo, setRefreshContactList}) => {
     const [searchString, setSearchString] = useState("");
     const [searchResult, setSearchResult] = useState("");
+    const [contactList, setContactList] = useState([]);
+
+    const refreshContacts = async ()=>{
+        const contactlistData =   await getChannelList(userInfo.email);
+        setContactList(contactlistData.data.responseData);
+        setSearchString();
+        setSearchResult();
+    }
+
+    useEffect(()=>{
+        refreshContacts();
+    },[setRefreshContactList])
 
     const handleSearch = async (searchText)=>{
         setSearchString(searchText)
@@ -78,7 +91,7 @@ export const ContactList = ({setSelectedChat,picture}) => {
     return (
         <Container>
             <ProfileInfoDiv>
-                <ProfileImage src={picture} referrerpolicy="no-referrer"/>
+                <ProfileImage src={userInfo.picture} referrerpolicy="no-referrer"/>
             </ProfileInfoDiv>
             <SearchBox>
                 <SearchContainer>
@@ -92,7 +105,7 @@ export const ContactList = ({setSelectedChat,picture}) => {
                 </SearchResults>
             )}
             {contactList.map((userData)=>(
-                <Contact key={userData.id} userData={userData} setSelectedChat={setSelectedChat} />
+                <Contact key={userData._id} userData={userData} setSelectedChat={setSelectedChat} />
             ))}
         </Container>
     )

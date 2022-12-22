@@ -35,13 +35,13 @@ const ChatPlaceholder = styled.img`
 
 function App({userInfo}) {
   const [selectedChat, setSelectedChat] = useState();
-  const [searchContactList, setSearchContactList] = useState(false);
+  const [refreshContactList, setRefreshContactList] = useState(false);
 
   return (
     <Container>
-      <ContactList setSelectedChat={setSelectedChat} picture={userInfo.picture}/>
+      <ContactList setSelectedChat={setSelectedChat} userInfo={userInfo} refreshContactList={refreshContactList}/>
       {selectedChat ? (
-      <Conversation selectedChat={selectedChat} userInfo={userInfo}/>
+      <Conversation selectedChat={selectedChat} userInfo={userInfo} setRefreshContactList={()=>setRefreshContactList(!refreshContactList)}/>
       ) : (
         <Placeholder>
           <ChatPlaceholder src="/welcome-placeholder.jpeg"/>

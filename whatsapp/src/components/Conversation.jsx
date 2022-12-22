@@ -68,7 +68,7 @@ const Message = styled.div`
 
 
 
-export const Conversation = ({selectedChat,userInfo}) => {
+export const Conversation = ({selectedChat,userInfo, setRefreshContactList}) => {
   const [text,setText] = useState("");
   const [pickerVisible, setPickerVisible] = useState(false);
   const [message,setMessage] = useState([]);
@@ -97,7 +97,8 @@ export const Conversation = ({selectedChat,userInfo}) => {
           },
         ];
         const channelResponse = await createChannel({channelUsers});
-        channelId = channelResponse.data.responseData._id
+        channelId = channelResponse.data.responseData._id;
+        setRefreshContactList();
       }
 
       const msg = [...message];
