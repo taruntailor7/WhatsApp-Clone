@@ -7,8 +7,8 @@ import cors from "cors"
 const app = new express();
 configureExpressApp(app);
 
-app.use(express.json()); 
-app.use(cors());
+// app.use(express.json()); 
+// app.use(cors());
 
 
 app.listen(3050, ()=>{
