@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import { Contact } from './Contact';
 import { contactList } from "../../src/mockData";
+import validateEmail from '../utility/utility';
 
 const Container = styled.div`
     display: flex;
@@ -52,6 +53,14 @@ export const SearchInput = styled.input`
 `;
 
 export const ContactList = ({setSelectedChat,picture}) => {
+    const [searchString, setSearchString] = useState("");
+
+    const handleSearch = (searchText)=>{
+        setSearchString(searchText)
+        if(validateEmail(searchText)){
+            console.log(searchText)
+        }
+    }
 
     return (
         <Container>
@@ -61,7 +70,7 @@ export const ContactList = ({setSelectedChat,picture}) => {
             <SearchBox>
                 <SearchContainer>
                     <SearchIcon src={"/search-icon.svg"} />
-                    <SearchInput placeholder="Search or start new chat" />
+                    <SearchInput placeholder="Search or start new chat" value={searchString} onChange={(e)=>handleSearch(e.target.value)}/>
                 </SearchContainer>
             </SearchBox>
             {contactList.map((userData)=>(
