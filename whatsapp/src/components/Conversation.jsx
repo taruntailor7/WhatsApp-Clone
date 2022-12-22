@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { SearchContainer, SearchInput } from './ContactList';
 // import {messagesList} from "../mockData";
 import EmojiPicker from 'emoji-picker-react';
-import { createChannel } from '../managers/httpManager';
+import { createChannel, sendMessage } from '../managers/httpManager';
 
 const Container = styled.div`
     display: flex;
@@ -68,7 +68,7 @@ const Message = styled.div`
 
 
 
-export const Conversation = ({selectedChat}) => {
+export const Conversation = ({selectedChat,userInfo}) => {
   const [text,setText] = useState("");
   const [pickerVisible, setPickerVisible] = useState(false);
   const [message,setMessage] = useState([]);
@@ -83,28 +83,33 @@ export const Conversation = ({selectedChat}) => {
       if(message || !message.lenght){
         const reqData = [
           {
+            email:userInfo.email,
+            name:userInfo.name,
+            profilePic:userInfo.profilePic,
+          },
+          {
             email:selectedChat.email,
             name:selectedChat.name,
             profilePic:selectedChat.profilePic,
           },
-          {
-            email:"",
-            name:"",
-            profilePic:""
-          },
         ];
-        await createChannel(reqData);
+        const channelResponse = await createChannel(reqData);
       }
+
       const msg = [...message];
-      msg.push({
-          id: 0,
-          messageType: "TEXT",
-          text,
-          senderID: 0,
-          addedOn: "12:00 PM",
-        });
-        setMessage(msg);
-        setText("");
+
+      const msgReqData = {
+        id: 0,
+        messageType: "TEXT",
+        text,
+        senderID: 0,
+        addedOn: "12:00 PM",
+      }
+
+      const messageResponse = await sendMessage(msgReqData);
+      msg.push(msgReqData);
+      setMessage(msg);
+      setText("");
     }
   };
 

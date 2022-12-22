@@ -42,7 +42,7 @@ function App({userInfo}) {
     <Container>
       <ContactList setSelectedChat={setSelectedChat} picture={userInfo.picture}/>
       {selectedChat ? (
-      <Conversation selectedChat={selectedChat}/>
+      <Conversation selectedChat={selectedChat} userInfo={userInfo}/>
       ) : (
         <Placeholder>
           <ChatPlaceholder src="/welcome-placeholder.jpeg"/>
