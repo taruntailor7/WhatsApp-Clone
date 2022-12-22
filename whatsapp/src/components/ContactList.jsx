@@ -105,7 +105,7 @@ export const ContactList = ({setSelectedChat, userInfo, setRefreshContactList}) 
                 </SearchResults>
             )}
             {contactList.map((userData)=>(
-                <Contact key={userData._id} userData={userData} setSelectedChat={setSelectedChat} />
+                <Contact key={userData._id} userInfo={userInfo} userData={userData} setSelectedChat={setSelectedChat} />
             ))}
         </Container>
     )

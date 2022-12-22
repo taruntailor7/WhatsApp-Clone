@@ -48,17 +48,17 @@ const MessageTime = styled.span`
     opacity:0.6;
 `;
 
-export const Contact = ({userData,setSelectedChat}) => {
-    
+export const Contact = ({userData,setSelectedChat,userInfo}) => {
+    const otherUser = userData.channelUsers.find((userObj)=> userObj.email !== userInfo.email);
 
     return (
-        <ContactItem onClick={()=>setSelectedChat(userData)}>
-            <ProfileIcon src={userData.profilePic}/>
+        <ContactItem onClick={()=>setSelectedChat(otherUser)}>
+            <ProfileIcon src={otherUser.profilePic}/>
             <ContactInfo>
-                <ContactName>{userData.name}</ContactName>
-                <MessageText>{userData.lastText}</MessageText>
+                <ContactName>{otherUser.name}</ContactName>
+                <MessageText>{otherUser.lastText}</MessageText>
             </ContactInfo>
-            <MessageTime >{userData.lastTextTime}</MessageTime>
+            <MessageTime >{otherUser.lastTextTime}</MessageTime>
         </ContactItem>
     )
 }
