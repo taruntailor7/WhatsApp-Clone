@@ -4,8 +4,7 @@ import * as yup from "yup";
 export const validateCreateUser = async(req,res,next) => {
     const schema = yup.object().shape({
         name: yup.string().required(),
-        phoneNumber: yup.number().required(),
-        password: yup.string().required(),
+        email: yup.string().required(),
         profilePic: yup.string(),
     });
     await validate(schema, req.body, res, next);
@@ -23,13 +22,13 @@ const validate = async (schema, reqData, res, next) => {
     }
 } 
 
-export const validateLogin = async(req,res,next) => {
-    const schema = yup.object().shape({
-        phoneNumber: yup.number().required(),
-        password: yup.string().required(),
-    });
-    await validate(schema, req.body, res, next);
-}
+// export const validateLogin = async(req,res,next) => {
+//     const schema = yup.object().shape({
+//         phoneNumber: yup.number().required(),
+//         password: yup.string().required(),
+//     });
+//     await validate(schema, req.body, res, next);
+// }
 
 export const validateAddChannel = async(req,res,next) => {
     const schema = yup.object().shape({
@@ -48,7 +47,7 @@ export const validateAddChannel = async(req,res,next) => {
 
 export const validateSearchUser = async(req,res,next) => {
     const schema = yup.object().shape({
-        phone: yup.number().required(),
+        email: yup.string().required(),
     });
     await validate(schema, req.query, res, next);
 }

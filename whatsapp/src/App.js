@@ -35,10 +35,10 @@ const ChatPlaceholder = styled.img`
 
 function App({userInfo}) {
   const [selectedChat, setSelectedChat] = useState();
-
+  console.log(userInfo.picture,"pic")
   return (
     <Container>
-      <ContactList setSelectedChat={setSelectedChat} picture={userInfo.picture}/>
+      <ContactList setSelectedChat={setSelectedChat} picture={`${userInfo.picture}`}/>
       {selectedChat ? (
       <Conversation selectedChat={selectedChat}/>
       ) : (

@@ -9,7 +9,7 @@ const applyRoutes = (app) => {
 
     app.post("/user",validateCreateUser, createUser);
 
-    app.post("/login",validateLogin, loginUser)
+    // app.post("/login",validateLogin, loginUser)
 
     app.post("/channel",validateAddChannel, createChannel)
     

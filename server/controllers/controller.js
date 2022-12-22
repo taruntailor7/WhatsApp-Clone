@@ -5,7 +5,7 @@ import {sendResponse, sendError} from "../utility/index.js"
 export const createUser = async(req, res)=>{
     const userObj = new userModel(req.body);
     const isUserExist = await userModel.findOneData({
-        phoneNumber: userObj.phoneNumber,
+        email: userObj.email,
     });
     if(isUserExist){
         return sendError(res,{},"User already exists");
@@ -17,10 +17,8 @@ export const createUser = async(req, res)=>{
 export const loginUser = async(req, res)=>{
     const requestData = req.body;
     const isUserExist = await userModel.findOneData({
-        phoneNumber: requestData.phoneNumber,
-        password: requestData.password
+        email: requestData.email
     });
-    delete isUserExist.password;
     if(!isUserExist){
         return sendError(res,{},"Invalid credentials");
     }
@@ -44,7 +42,7 @@ export const getChannelList = async(req, res)=>{
 export const searchUser = async(req, res)=>{
     const requestData = req.query
     const isUserExist = await userModel.findOneData({
-        phoneNumber: requestData.phone
+        email: requestData.email
     });
     if(!isUserExist){
         return sendError(res,{},"No user found");
