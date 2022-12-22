@@ -51,7 +51,6 @@ export const SearchInput = styled.input`
     margin-left: 10px;  
 `;
 
-
 export const ContactList = ({setSelectedChat,picture}) => {
   return (
     <Container>
