@@ -52,20 +52,21 @@ export const SearchInput = styled.input`
 `;
 
 export const ContactList = ({setSelectedChat,picture}) => {
-  return (
-    <Container>
-        <ProfileInfoDiv>
-            <ProfileImage src={picture || "/profile/elon.jpeg"} referrerpolicy="no-referrer"/>
-        </ProfileInfoDiv>
-        <SearchBox>
-            <SearchContainer>
-                <SearchIcon src={"/search-icon.svg"} />
-                <SearchInput placeholder="Search or start new chat" />
-            </SearchContainer>
-        </SearchBox>
-        {contactList.map((userData)=>(
-            <Contact key={userData.id} userData={userData} setSelectedChat={setSelectedChat} />
-        ))}
-    </Container>
-  )
+
+    return (
+        <Container>
+            <ProfileInfoDiv>
+                <ProfileImage src={picture} referrerpolicy="no-referrer"/>
+            </ProfileInfoDiv>
+            <SearchBox>
+                <SearchContainer>
+                    <SearchIcon src={"/search-icon.svg"} />
+                    <SearchInput placeholder="Search or start new chat" />
+                </SearchContainer>
+            </SearchBox>
+            {contactList.map((userData)=>(
+                <Contact key={userData.id} userData={userData} setSelectedChat={setSelectedChat} />
+            ))}
+        </Container>
+    )
 }

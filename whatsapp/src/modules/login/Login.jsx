@@ -4,7 +4,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import App from '../../App';
 import { getUserInfo, setUserInfoInCookie } from '../../managers/cookieManager';
-import axios from 'axios';
+import { createUser } from '../../managers/httpManager';
 
 const Container = styled.div`
     display: flex;
@@ -60,7 +60,6 @@ const QRCode = styled.img`
     height:264px;
     background-color:white;
 `
-const baseUrl = "http://localhost:3050";
 
 export const Login = () => {
     const [userInfo, setUserInfo] = useState();
@@ -75,16 +74,16 @@ export const Login = () => {
     const handleResponseFromGoogle = async (response)=>{
         // console.log(response.credential,"respo");
         let decodedUser = jwt_decode(response.credential);
-        console.log(decodedUser,"decoded");
-        setUserInfo(decodedUser);
-        setUserInfoInCookie(decodedUser);
-
-        await axios.post(`${baseUrl}/user`,{
+        // console.log(decodedUser,"decoded");
+        
+        await createUser({
             email: decodedUser.email,
             name: decodedUser.name,
             profilePic: decodedUser.picture
-        })
-    }
+        });
+        setUserInfo(decodedUser);
+        setUserInfoInCookie(decodedUser);
+    };
 
     return (
         <>
