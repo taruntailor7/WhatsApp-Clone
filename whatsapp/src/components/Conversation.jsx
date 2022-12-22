@@ -79,6 +79,7 @@ export const Conversation = ({selectedChat,userInfo}) => {
   }
 
   const onEnterPress = async (event) =>{
+    let channelId = "";
     if(event.key === "Enter"){
       if(message || !message.lenght){
         const reqData = [
@@ -94,19 +95,22 @@ export const Conversation = ({selectedChat,userInfo}) => {
           },
         ];
         const channelResponse = await createChannel(reqData);
+        channelId = channelResponse.data.responseData._id
       }
 
       const msg = [...message];
 
       const msgReqData = {
-        id: 0,
-        messageType: "TEXT",
         text,
-        senderID: 0,
-        addedOn: "12:00 PM",
+        senderEmail: userInfo.email,
+        addedOn: new Date().getTime(), 
       }
 
-      const messageResponse = await sendMessage(msgReqData);
+      const messageResponse = await sendMessage({
+        channelId,
+        msgReqData
+      });
+
       msg.push(msgReqData);
       setMessage(msg);
       setText("");

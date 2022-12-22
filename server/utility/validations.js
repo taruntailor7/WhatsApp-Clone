@@ -55,7 +55,7 @@ export const validateSearchUser = async(req,res,next) => {
 
 export const validateChannels = async(req,res,next) => {
     const schema = yup.object().shape({
-        userId: yup.string().required(),
+        email: yup.string().required(),
     });
     await validate(schema, req.query, res, next);
 }
@@ -64,7 +64,7 @@ export const validateAddMessage = async(req,res,next) => {
     const schema = yup.object().shape({
         channelId: yup.string().required(),
         messages: yup.object().shape({
-            senderID: yup.string().required(),
+            senderEmail: yup.string().required(),
             message: yup.string().required(),
         })
     });
