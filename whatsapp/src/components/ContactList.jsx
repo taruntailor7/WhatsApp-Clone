@@ -53,6 +53,11 @@ export const SearchInput = styled.input`
     margin-left: 10px;  
 `;
 
+const SearchResults = styled.div`
+    width:100%;
+    height:200px;
+`
+
 export const ContactList = ({setSelectedChat,picture}) => {
     const [searchString, setSearchString] = useState("");
 
@@ -61,7 +66,7 @@ export const ContactList = ({setSelectedChat,picture}) => {
         if(!validateEmail(searchText)){
             return;
         }
-        console.log(searchText);
+        // console.log(searchText);
         const user = await searchUser(searchText);
         console.log(user,"user")
     }
@@ -77,6 +82,7 @@ export const ContactList = ({setSelectedChat,picture}) => {
                     <SearchInput placeholder="Search or start new chat" value={searchString} onChange={(e)=>handleSearch(e.target.value)}/>
                 </SearchContainer>
             </SearchBox>
+            <SearchResults></SearchResults>
             {contactList.map((userData)=>(
                 <Contact key={userData.id} userData={userData} setSelectedChat={setSelectedChat} />
             ))}
