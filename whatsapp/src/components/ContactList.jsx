@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Contact } from './Contact';
 import { contactList } from "../../src/mockData";
 import validateEmail from '../utility/utility';
+import { searchUser } from '../managers/httpManager';
 
 const Container = styled.div`
     display: flex;
@@ -55,11 +56,14 @@ export const SearchInput = styled.input`
 export const ContactList = ({setSelectedChat,picture}) => {
     const [searchString, setSearchString] = useState("");
 
-    const handleSearch = (searchText)=>{
+    const handleSearch = async (searchText)=>{
         setSearchString(searchText)
-        if(validateEmail(searchText)){
-            console.log(searchText)
+        if(!validateEmail(searchText)){
+            return;
         }
+        console.log(searchText);
+        const user = await searchUser(searchText);
+        console.log(user,"user")
     }
 
     return (
