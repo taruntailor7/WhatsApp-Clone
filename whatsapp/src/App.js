@@ -35,8 +35,7 @@ const ChatPlaceholder = styled.img`
 
 function App({userInfo}) {
   const [selectedChat, setSelectedChat] = useState();
-  
-  
+  const [searchContactList, setSearchContactList] = useState(false);
 
   return (
     <Container>

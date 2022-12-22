@@ -81,12 +81,14 @@ export const Conversation = ({selectedChat,userInfo}) => {
   const onEnterPress = async (event) =>{
     let channelId = "";
     if(event.key === "Enter"){
-      if(message || !message.lenght){
-        const reqData = [
+      console.log(message,"mmm");
+      if(message || !message.length){
+        console.log(message,"mesg")
+        const channelUsers = [
           {
             email:userInfo.email,
             name:userInfo.name,
-            profilePic:userInfo.profilePic,
+            profilePic:userInfo.picture,
           },
           {
             email:selectedChat.email,
@@ -94,7 +96,7 @@ export const Conversation = ({selectedChat,userInfo}) => {
             profilePic:selectedChat.profilePic,
           },
         ];
-        const channelResponse = await createChannel(reqData);
+        const channelResponse = await createChannel({channelUsers});
         channelId = channelResponse.data.responseData._id
       }
 

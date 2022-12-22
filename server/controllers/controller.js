@@ -54,7 +54,7 @@ export const sendMessage = async(req, res)=>{
     const requestData = req.body;
     await channelModel.findOneAndUpdateData(
         {_id:requestData.channelId},
-        {$push: {messages:requestData.messages} }
+        {$push: {messages:requestData.messages}}
     );
     sendResponse(res, {}, "Message sent successfully", true, 200); 
 }

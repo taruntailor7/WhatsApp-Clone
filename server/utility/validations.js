@@ -65,7 +65,7 @@ export const validateAddMessage = async(req,res,next) => {
         channelId: yup.string().required(),
         messages: yup.object().shape({
             senderEmail: yup.string().required(),
-            message: yup.string().required(),
+            text: yup.string().required(),
         })
     });
     await validate(schema, req.body, res, next);

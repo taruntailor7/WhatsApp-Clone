@@ -11,7 +11,7 @@ export const searchUser = async (email) =>{
 }
 
 export const createChannel = async (requestData) =>{
-    return await axios.get(`${baseUrl}/channel`,requestData);
+    return await axios.post(`${baseUrl}/channel`,requestData);
 }
 
 export const getChannelList = async (email) =>{
@@ -19,5 +19,5 @@ export const getChannelList = async (email) =>{
 }
 
 export const sendMessage = async (requestData) =>{
-    return await axios.get(`${baseUrl}/message`,requestData);
+    return await axios.post(`${baseUrl}/message`,requestData);
 }
