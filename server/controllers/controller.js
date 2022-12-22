@@ -34,7 +34,7 @@ export const createChannel = async(req, res)=>{
 export const getChannelList = async(req, res)=>{
     const requestData = req.query;
     const channelList = await channelModel.findData({
-        "channelUsers._id": await requestData.userId,
+        "channelUsers.email": await requestData.email,
     });
     sendResponse(res, channelList, "Channel list fetched", true, 200);
 }

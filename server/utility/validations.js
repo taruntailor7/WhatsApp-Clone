@@ -35,7 +35,7 @@ export const validateAddChannel = async(req,res,next) => {
         channelUsers: yup.array().of(
             yup.object().shape({
                 name: yup.string().required(),
-                _id: yup.string().required(),
+                email: yup.string().required(),
                 profilePic: yup.string(),
             })
         )

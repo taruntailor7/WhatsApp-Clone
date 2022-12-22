@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 
 const ContactItem = styled.div`
@@ -50,14 +50,16 @@ const MessageTime = styled.span`
 `;
 
 export const Contact = ({userData,setSelectedChat}) => {
-  return (
-    <ContactItem onClick={()=>setSelectedChat(userData)}>
-        <ProfileIcon src={userData.profilePic}/>
-        <ContactInfo>
-            <ContactName>{userData.name}</ContactName>
-            <MessageText>{userData.lastText}</MessageText>
-        </ContactInfo>
-        <MessageTime >{userData.lastTextTime}</MessageTime>
-    </ContactItem>
-  )
+    
+
+    return (
+        <ContactItem onClick={()=>setSelectedChat(userData)}>
+            <ProfileIcon src={userData.profilePic}/>
+            <ContactInfo>
+                <ContactName>{userData.name}</ContactName>
+                <MessageText>{userData.lastText}</MessageText>
+            </ContactInfo>
+            <MessageTime >{userData.lastTextTime}</MessageTime>
+        </ContactItem>
+    )
 }

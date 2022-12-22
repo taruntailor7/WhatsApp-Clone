@@ -55,11 +55,12 @@ export const SearchInput = styled.input`
 
 const SearchResults = styled.div`
     width:100%;
-    height:200px;
+    height:100px;
 `
 
 export const ContactList = ({setSelectedChat,picture}) => {
     const [searchString, setSearchString] = useState("");
+    const [searchResult, setSearchResult] = useState("");
 
     const handleSearch = async (searchText)=>{
         setSearchString(searchText)
@@ -67,8 +68,11 @@ export const ContactList = ({setSelectedChat,picture}) => {
             return;
         }
         // console.log(searchText);
-        const user = await searchUser(searchText);
-        console.log(user,"user")
+        const userData = await searchUser(searchText);
+        console.log(userData,"user")
+        if(userData.data?.success){
+            setSearchResult(userData.data.responseData);
+        }
     }
 
     return (
@@ -82,7 +86,11 @@ export const ContactList = ({setSelectedChat,picture}) => {
                     <SearchInput placeholder="Search or start new chat" value={searchString} onChange={(e)=>handleSearch(e.target.value)}/>
                 </SearchContainer>
             </SearchBox>
-            <SearchResults></SearchResults>
+            {searchResult && (
+                <SearchResults>
+                    <Contact userData={searchResult} setSelectedChat={setSelectedChat} />
+                </SearchResults>
+            )}
             {contactList.map((userData)=>(
                 <Contact key={userData.id} userData={userData} setSelectedChat={setSelectedChat} />
             ))}

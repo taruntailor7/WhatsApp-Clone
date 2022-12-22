@@ -70,7 +70,7 @@ const Message = styled.div`
 export const Conversation = ({selectedChat}) => {
   const [text,setText] = useState("");
   const [pickerVisible, setPickerVisible] = useState(false);
-  const [message,setMessage] = useState(messagesList);
+  const [message,setMessage] = useState([]);
 
   const onEmojiClick = (emojiObj)=>{
     setText(text+emojiObj.emoji);
@@ -79,6 +79,9 @@ export const Conversation = ({selectedChat}) => {
 
   const onEnterPress = (event) =>{
     if(event.key === "Enter"){
+      if(message || !message.lenght){
+        
+      }
       const msg = [...message];
       msg.push({
           id: 0,
