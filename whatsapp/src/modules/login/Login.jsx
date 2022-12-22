@@ -71,9 +71,7 @@ export const Login = () => {
     },[]);
 
     const handleResponseFromGoogle = (response)=>{
-        // console.log(response.credential,"respo");
         let decodedUser = jwt_decode(response.credential);
-        // console.log(decodedUser,"decoded");
         setUserInfo(decodedUser);
         setUserInfoInCookie(decodedUser);
     }
