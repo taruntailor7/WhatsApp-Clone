@@ -56,7 +56,7 @@ export const ContactList = ({setSelectedChat,picture}) => {
   return (
     <Container>
         <ProfileInfoDiv>
-            <ProfileImage src={picture || "/profile/elon.jpeg"}/>
+            <ProfileImage src={picture || "/profile/elon.jpeg"} referrerpolicy="no-referrer"/>
         </ProfileInfoDiv>
         <SearchBox>
             <SearchContainer>

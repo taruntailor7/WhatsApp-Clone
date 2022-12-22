@@ -38,7 +38,7 @@ function App({userInfo}) {
 
   return (
     <Container>
-      <ContactList setSelectedChat={setSelectedChat} picture={`${userInfo.picture}`}/>
+      <ContactList setSelectedChat={setSelectedChat} picture={userInfo.picture}/>
       {selectedChat ? (
       <Conversation selectedChat={selectedChat}/>
       ) : (
