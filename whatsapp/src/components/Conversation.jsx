@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 import { SearchContainer, SearchInput } from './ContactList';
-import {messagesList} from "../mockData";
+// import {messagesList} from "../mockData";
 import EmojiPicker from 'emoji-picker-react';
+import { createChannel } from '../managers/httpManager';
 
 const Container = styled.div`
     display: flex;
@@ -77,10 +78,22 @@ export const Conversation = ({selectedChat}) => {
     setPickerVisible(false)
   }
 
-  const onEnterPress = (event) =>{
+  const onEnterPress = async (event) =>{
     if(event.key === "Enter"){
       if(message || !message.lenght){
-        
+        const reqData = [
+          {
+            email:selectedChat.email,
+            name:selectedChat.name,
+            profilePic:selectedChat.profilePic,
+          },
+          {
+            email:"",
+            name:"",
+            profilePic:""
+          },
+        ];
+        await createChannel(reqData);
       }
       const msg = [...message];
       msg.push({
