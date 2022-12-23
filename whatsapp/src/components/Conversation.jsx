@@ -67,7 +67,6 @@ const Message = styled.div`
 `;
 
 
-
 export const Conversation = ({selectedChat,userInfo, setRefreshContactList}) => {
   const [text,setText] = useState("");
   const [pickerVisible, setPickerVisible] = useState(false);
