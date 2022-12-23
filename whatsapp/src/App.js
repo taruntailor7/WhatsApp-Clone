@@ -41,7 +41,7 @@ function App({userInfo}) {
     <Container>
       <ContactList setSelectedChat={setSelectedChat} userInfo={userInfo} refreshContactList={refreshContactList}/>
       {selectedChat ? (
-      <Conversation selectedChat={selectedChat} userInfo={userInfo} setRefreshContactList={()=>setRefreshContactList(!refreshContactList)}/>
+      <Conversation selectedChat={selectedChat} userInfo={userInfo} refreshContactList={refreshContactList} setRefreshContactList={()=>setRefreshContactList(!refreshContactList)}/>
       ) : (
         <Placeholder>
           <ChatPlaceholder src="/welcome-placeholder.jpeg"/>

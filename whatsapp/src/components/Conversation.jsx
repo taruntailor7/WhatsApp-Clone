@@ -67,7 +67,7 @@ const Message = styled.div`
 `;
 
 
-export const Conversation = ({selectedChat,userInfo, setRefreshContactList}) => {
+export const Conversation = ({selectedChat,userInfo,refreshContactList,setRefreshContactList}) => {
   const [text,setText] = useState("");
   const [pickerVisible, setPickerVisible] = useState(false);
   const [messageList,setMessageList] = useState([]);
@@ -80,7 +80,7 @@ export const Conversation = ({selectedChat,userInfo, setRefreshContactList}) => 
 
   useEffect(()=>{
     setMessageList(selectedChat.channelData.messages);
-  },[selectedChat,messageList]);
+  },[selectedChat,refreshContactList]);
 
   const onEnterPress = async (event) =>{
     let channelId = selectedChat.channelData._id;
