@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseUrl = "http://localhost:3050";
+const baseUrl = "https://whatsappclone-nc54.onrender.com";
 
 export const createUser = async (userData) =>{
     return await axios.post(`${baseUrl}/user`,userData);

@@ -71,7 +71,7 @@ export const Conversation = ({selectedChat,userInfo, setRefreshContactList}) => 
   const [text,setText] = useState("");
   const [pickerVisible, setPickerVisible] = useState(false);
   const [messageList,setMessageList] = useState([]);
-  console.log(messageList,"msgslist");
+  // console.log(messageList,"msgslist");
 
   const onEmojiClick = (emojiObj)=>{
     setText(text+emojiObj.emoji);
@@ -80,7 +80,7 @@ export const Conversation = ({selectedChat,userInfo, setRefreshContactList}) => 
 
   useEffect(()=>{
     setMessageList(selectedChat.channelData.messages);
-  },[selectedChat]);
+  },[selectedChat,messageList]);
 
   const onEnterPress = async (event) =>{
     let channelId = selectedChat.channelData._id;
