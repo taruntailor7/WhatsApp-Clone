@@ -71,6 +71,7 @@ export const Conversation = ({selectedChat,userInfo, setRefreshContactList}) => 
   const [text,setText] = useState("");
   const [pickerVisible, setPickerVisible] = useState(false);
   const [messageList,setMessageList] = useState([]);
+  console.log(messageList,"msgslist");
 
   const onEmojiClick = (emojiObj)=>{
     setText(text+emojiObj.emoji);
@@ -127,8 +128,8 @@ export const Conversation = ({selectedChat,userInfo, setRefreshContactList}) => 
       </ProfileHeader>
       <MessageContainer>
         {messageList?.map((messageData) =>(
-          <MessageDiv key={messageData.id} isYours={messageData.senderEmail === userInfo.email}>
-            <Message isYours={messageData.email === userInfo.email}>{messageData.text}</Message>
+          <MessageDiv key={messageData.addedOn} isYours={messageData.senderEmail === userInfo.email}>
+            <Message isYours={messageData.senderEmail === userInfo.email}>{messageData.text}</Message>
           </MessageDiv>
         ))}
       {pickerVisible && (<EmojiPicker width="30%" margin="auto" height="1000px"  onEmojiClick={onEmojiClick} />)}

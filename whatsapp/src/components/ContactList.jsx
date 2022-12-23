@@ -98,7 +98,7 @@ export const ContactList = ({setSelectedChat, userInfo, setRefreshContactList}) 
             </SearchBox>
             {searchResult && (
                 <SearchResults>
-                    <Contact userData={searchResult} setSelectedChat={setSelectedChat} />
+                    <Contact userData={searchResult} setSelectedChat={setSelectedChat} userInfo={userInfo}/>
                 </SearchResults>
             )}
             {contactList.map((userData)=>(
